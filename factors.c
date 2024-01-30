@@ -11,9 +11,9 @@ long int a, b, mid, qtr;
 mid = nb / 2;
 qtr = (nb / 4) + 1;
 
-for (a = mid; a > qtr; a--)
+for (a = mid; a > 0; a--)
 {
-for (b = 1; b <= qtr; b++)
+for (b = 1; b <= mid; b++)
 {
 if (a * b == nb)
 {
