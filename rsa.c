@@ -1,5 +1,25 @@
 #include "main.h"
 /**
+ * is_prime - Isa prime number
+ * @nb: Number to determine if prime
+ * Description: Determine if a number is a prime number
+ * Return: 1 or -1
+ */
+int is_prime(int nb)
+{
+int i = 2;
+while (i < nb / 2)
+{
+if (nb % i == 0)
+{
+return (-1);
+}
+i++;
+}
+return (1);
+}
+
+/**
  * find_pair - Find Pair
  * @nb: Number to find prime factors
  * Description: Find the prime factors of the given number
@@ -11,14 +31,17 @@ long int a, b, mid, qtr;
 mid = nb / 2;
 qtr = (nb / 4) + 1;
 
-for (a = mid; a > qtr; a--)
+for (a = mid; a > 0; a--)
 {
-for (b = 1; b <= qtr; b++)
+if (is_prime(a) == 1)
 {
-if (a * b == nb)
+for (b = 1; b <= mid; b++)
+{
+if (is_prime(b) == 1 && a * b == nb)
 {
 printf("%ld=%ld*%ld\n", nb, a, b);
 return (0);
+}
 }
 }
 }
