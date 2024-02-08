@@ -5,24 +5,20 @@
  * Description: Find the prime factors of the given number
  * Return: Table of prime numbers
  */
-int find_pair(long int nb)
+int find_pair(unsigned long long int nb)
 {
-long int a, b, mid, qtr;
+unsigned long long int a, mid;
 mid = nb / 2;
-qtr = (nb / 4) + 1;
 
-for (a = mid; a > 0; a--)
+for (a = 2; a <= mid; a++)
 {
-for (b = 1; b <= mid; b++)
+if (nb % a == 0)
 {
-if (a * b == nb)
-{
-printf("%ld=%ld*%ld\n", nb, a, b);
+printf("%llu=%llu*%llu\n", nb, nb / a, a);
 return (0);
 }
 }
-}
-return (0);
+return (-1);
 }
 
 /**
@@ -31,29 +27,29 @@ return (0);
  * @argv: Array of params
  * Description: Main function
  * Return: 0 or exit
-*/
+ */
 int main(int argc, char **argv)
 {
 FILE *file;
 char buffer[30];
-long int nb;
+unsigned long long int nb;
 
 if (argc < 2)
 {
-printf("Usage: factors <numbers_file>\n");
+fprintf(stderr, "Usage: factors <numbers_file>\n");
 exit(98);
 }
 
 file = fopen(argv[1], "r");
 if (file == NULL)
 {
-printf("Could not open file: %s\n", argv[1]);
+fprintf(stderr, "Could not open file: %s\n", argv[1]);
 exit(98);
 }
 
 while (fgets(buffer, sizeof(buffer), file))
 {
-nb = atoi(buffer);
+nb = atoll(buffer);
 find_pair(nb);
 }
 return (0);
